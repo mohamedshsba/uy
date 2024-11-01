@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Physics Page</title>
+</head>
+<body>
+    <h1>Physics Images</h1>
+    <div>
+        <a href="#" onclick="promptForCode('img1')">Physics Image 1</a><br>
+        <a href="#" onclick="promptForCode('img2')">Physics Image 2</a><br>
+        <a href="#" onclick="promptForCode('img3')">Physics Image 3</a><br>
+        <a href="#" onclick="promptForCode('img4')">Physics Image 4</a><br>
+    </div>
+
+    <script>
+        function promptForCode(imageId) {
+            const code = prompt("Enter code:");
+            fetch('/verify-code', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: 'code=${code}'
+            })
+            .then(response => response.text())
+            .then(message => {
+                alert(message);
+            });
+        }
+    </script>
+</body>
+</html>
